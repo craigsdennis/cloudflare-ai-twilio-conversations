@@ -18,22 +18,6 @@ twilio api:conversations:v1:services:create --friendly-name="cloudflareconvo"
 
 Use the `SID` (String Identifier) to add a new address configuration
 
-Wire up your Twilio Phone Number to a Conversation Service
-
-```bash
-twilio api:conversations:v1:configuration:addresses:create \
-    --friendly-name="Cloudflare Convo" \
-    --auto-creation.enabled  \
-    --auto-creation.type="webhook" \
-    --auto-creation.conversation-service-sid="YOUR-SID-HERE" \
-    --auto-creation.webhook-url=https://example.com \
-    --auto-creation.webhook-method="POST" \
-    --auto-creation.webhook-filters="onMessageAdded" \
-    --type="sms" \
-    --address="YOUR-TWILIO-NUMBER"
-
-```
-
 If you need to unset your SMS webhook url:
 
 ```bash
@@ -56,4 +40,22 @@ Modify [wrangler.toml](./wrangler.toml) with your information.
 
 ```bash
 wrangler deploy
+```
+
+### Altogether now
+
+Configure your Twilio Phone Number to connect to a Conversation Service. Point it to your Cloudflare worker using the `auto-creation.webhook-url` parameter.
+
+```bash
+twilio api:conversations:v1:configuration:addresses:create \
+    --friendly-name="Cloudflare Convo" \
+    --auto-creation.enabled  \
+    --auto-creation.type="webhook" \
+    --auto-creation.conversation-service-sid="YOUR-SID-HERE" \
+    --auto-creation.webhook-url=https://YOUR-CLOUDFLARE-WORKER-NAME.workers.dev \
+    --auto-creation.webhook-method="POST" \
+    --auto-creation.webhook-filters="onMessageAdded" \
+    --type="sms" \
+    --address="YOUR-TWILIO-NUMBER"
+
 ```
