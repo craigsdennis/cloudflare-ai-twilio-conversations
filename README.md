@@ -4,6 +4,12 @@ This is a WIP to use the new [Cloudflare Worker AI LLM](https://developers.cloud
 
 ## Installation
 
+### Twilio
+
+Install the [Twilio CLI](https://www.twilio.com/docs/twilio-cli/quickstart)
+
+Buy a [phone number](https://console.twilio.com/us1/develop/phone-numbers/manage/search) if you need one.
+
 Create a Conversation Service:
 
 ```bash
@@ -32,4 +38,22 @@ If you need to unset your SMS webhook url:
 
 ```bash
 twilio phone-numbers:update <YOUR-TWILIO-NUMBER> --sms-url=""
+```
+
+### Cloudflare
+
+Setup a Cloudflare account
+
+[Install wrangler](https://developers.cloudflare.com/workers/wrangler/install-and-update/) and login if you haven't already.
+
+If you need to authenticate
+
+```bash
+wrangler login
+```
+
+Modify [wrangler.toml](./wrangler.toml) with your information.
+
+```bash
+wrangler deploy
 ```
