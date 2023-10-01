@@ -20,6 +20,11 @@ export class ConversationHelper {
 		this.endpoint = `https://conversations.twilio.com/v1/Services/${serviceSid}/Conversations/${conversationSid}/Messages`;
 	}
 
+	/**
+	 * Retrieves the previous 50 messages from Conversations API
+	 *
+	 * @returns Conversation Messages in the format that @cloudflare/ai expects
+	 */
 	async getPreviousMessages() {
 		const result = await fetch(this.endpoint, {
 			headers: {
@@ -36,8 +41,13 @@ export class ConversationHelper {
 		return messages;
 	}
 
+	/**
+	 * Add a new message to the conversation (sends messages to connected Participants)
+	 *
+	 * @param content The Body of the message you would like to have
+	 * @returns The response from the Twilio Conversations API create call
+	 */
 	async addMessage(content: string) {
-		// Allows for URL Encoding
 		const result = await fetch(this.endpoint, {
 			method: 'POST',
 			headers: {
