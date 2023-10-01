@@ -52,7 +52,7 @@ twilio api:conversations:v1:configuration:addresses:create \
     --auto-creation.enabled  \
     --auto-creation.type="webhook" \
     --auto-creation.conversation-service-sid="YOUR-SID-HERE" \
-    --auto-creation.webhook-url=https://YOUR-CLOUDFLARE-WORKER-NAME.workers.dev \
+    --auto-creation.webhook-url="https://YOUR-CLOUDFLARE-WORKER-NAME.workers.dev" \
     --auto-creation.webhook-method="POST" \
     --auto-creation.webhook-filters="onMessageAdded" \
     --type="sms" \
